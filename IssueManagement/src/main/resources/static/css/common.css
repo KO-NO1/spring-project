@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.table-row-active {
+	background-color: #cce5ff; /* 選択行の背景色を設定 */
+}
+
+.w3{
+  width:75px;
+}
+
+.w6{
+	width:122px;
+
+}
+
+.w4{
+	width:90px;
+}
+
+.s1{
+	width:188
+}
+.w110{
+  width:110px;
+}
+
+
+.w50{
+  width:50%;
+}
+
+th, td{
+   text-align: center;
+    vertical-align: middle;
+}
+
+.text-danger {
+	   color:red;
+}

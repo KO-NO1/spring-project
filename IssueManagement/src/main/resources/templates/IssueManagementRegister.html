@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>課題管理登録</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+<div th:replace="~{common/header :: header}"></div>
+<div class="container-fluid">
+	<div th:insert="~{common/guideMessage :: guideMessage}"></div>
+	<h2 class="mt-3">課題管理情報登録</h2>
+	<form th:action="@{/IssueManagementList}" method="post" th:object="${form}">
+		<div class="col-3 mb-3">
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text" id="addon-wrapping">管理No.</span>
+				  <input type="text" class="form-control" th:field="*{controlNumber}" placeholder="00001～" aria-label="controlNumber" aria-describedby="addon-wrapping">
+				</div>
+			</div>
+			<div class="col-9 col-md-6">
+				<div class="input-group flex-nowrap mb-3">
+					<span class="input-group-text">発生日</span>
+					<input type="text" class="form-control" th:field="*{accrualDate}" th:value="${#temporals.format(form.accrualDate, 'yyyy-MM-dd HH:mm')}"  placeholder="yyyy/mm/dd" aria-label="accrualDate">
+					<span class="input-group-text">期限</span>
+					<input type="text" class="form-control" th:field="*{deadline}" th:value="${#temporals.format(form.deadline, 'yyyy-MM-dd HH:mm')}" placeholder="yyyy/mm/dd" aria-label="deadline">
+					<span class="input-group-text">完了日</span>
+					<input type="text" class="form-control" th:field="*{completionDate}" th:value="${#temporals.format(form.completionDate, 'yyyy-MM-dd HH:mm')}" placeholder="yyyy/mm/dd" aria-label="completionDate">
+				</div>
+			</div>
+			<div class="col-3 mb-3">
+				<div class="input-group flex-nowrap ">
+					<span class="input-group-text" id="addon-wrapping">記入者</span>
+					<input type="text" class="form-control" th:field="*{writtenBy}" placeholder="苗字" aria-label="writtenBy" aria-describedby="addon-wrapping">
+				</div>
+			</div>
+
+			<div class="w3 mb-3">
+			  <span class="input-group-text">重要度</span>
+		  	  <div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{importance}" th:value="高" >
+				  <label class="form-check-label" for="importance1">
+					高
+				  </label>
+			  </div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{importance}" th:value="中">
+				  <label class="form-check-label" for="importance2">
+				    中
+				  </label>
+				</div>
+				<div class="form-check ms-6">
+				  <input class="form-check-input" type="radio" th:field="*{importance}" th:value="低">
+				  <label class="form-check-label" for="importance3">
+				    低
+				  </label>
+				</div>
+			</div>
+
+			<div class="w3 mb-3">
+				<span class="input-group-text">状況</span>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{situation}"  th:value="未着手">
+				  <label class="form-check-label" for="situation1">
+				    未着手
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{situation}"  th:value="対応中">
+				  <label class="form-check-label" for="situation2">
+				    対応中
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{situation}" th:value="保留">
+				  <label class="form-check-label" for="situation3">
+				    保留
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" th:field="*{situation}" th:value="完了">
+				  <label class="form-check-label" for="situation4">
+				    完了
+				  </label>
+				</div>
+			</div>
+
+			<div class="col-6">
+				<div class="input-group flex-nowrap mb-3">
+					<span class="w4 input-group-text" id="addon-wrapping">担当者</span>
+					<input type="text" class="form-control" th:field="*{manager}" placeholder="苗字" aria-label="manager" aria-describedby="addon-wrapping">
+
+					<label class="input-group-text" for="classification">分類</label>
+					<select class="form-select" th:field="*{classification}">
+						<option value="">指定なし</option>
+						<option th:each="classificationOption : ${classificationOptions}"
+								th:value="${classificationOption.classification}" th:text="${classificationOption.classification}">
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-6">
+				<div class="input-group flex-nowrap">
+				  <span class="input-group-text" id="addon-wrapping">課題概要</span>
+				  <textarea type="text" class="form-control"th:field="*{assignmentOverview}" aria-label="assignmentOverview" aria-describedby="addon-wrapping" rows="3"></textarea>
+				</div>
+			</div>
+
+			<div class="mt-3">
+				<input type="submit" class="btn btn-primary" name="register" value="登録">
+				<a class="btn btn-secondary" th:href="@{/IssueManagementList}">戻る</a>
+			</div>
+	</form>
+</div>
+</html>
