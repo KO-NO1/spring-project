@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>前回診断結果</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+<div class="container">
+	<div class="center">
+		<h1>前回の診断結果</h1>
+	</div>
+	<div th:insert="~{common/guideMessage :: guideMessage}"></div>
+    <div th:if="${dolphin}">
+      <img class="resize" alt="イルカ型" th:src="@{/img/dolphin.PNG}"><br><br>
+      <div class="content">
+        <ul class="list-group list-group-flush　txt">
+          <li calss="list-group-item">全体人口の１０％</li>
+          <li calss="list-group-item">知性が高く神経質</li>
+          <li calss="list-group-item">完璧主義の罠にハマりやすい</li>
+          <li calss="list-group-item">かなりの夜型</li>
+          <li calss="list-group-item">必要睡眠時間は6時間ぐらい</li>
+        </ul>
+      </div><br>
+    </div><!-- th:if end -->
+
+    <div th:if="${wolf}">
+      <img class="resize" alt="オオカミ型" th:src="@{/img/wolf.PNG}"><br><br>
+      <div class="content">
+        <ul class="list-group list-group-flush　txt">
+          <li calss="list-group-item">全人口の15～20％</li>
+          <li calss="list-group-item">創造性が高く気分屋</li>
+          <li calss="list-group-item">感情に沿って行動しがち</li>
+          <li calss="list-group-item">睡眠時間7時間くらい</li>
+        </ul>
+      </div><br>
+    </div>
+
+    <div th:if="${lion}">
+      <img class="resize" alt="ライオン型" th:src="@{/img/lion.PNG}"><br><br>
+      <div class="content">
+        <ul class="list-group list-group-flush　txt">
+          <li calss="list-group-item">全人口の15～20％</li>
+          <li calss="list-group-item">楽観的、現実的</li>
+          <li calss="list-group-item">バリバリの朝型</li>
+          <li calss="list-group-item">昼に能力全開で昼寝は苦手</li>
+          <li calss="list-group-item">睡眠時間7時間以上</li>
+        </ul>
+      </div><br>
+    </div>
+
+    <div th:if="${bear}">
+      <img class="resize" alt="クマ型" th:src="@{/img/bear.PNG}"><br><br>
+      <div class="content">
+        <ul class="list-group list-group-flush　txt">
+          <li calss="list-group-item">全人口の50％</li>
+          <li calss="list-group-item">親切、開放的</li>
+          <li calss="list-group-item">知らない場所や相手は緊張する</li>
+          <li calss="list-group-item"> お昼の能力全開（昼過ぎ位まで）</li>
+          <li calss="list-group-item">睡眠時間7時間以上</li>
+        </ul>
+      </div><br>
+    </div>
+    <th:block th:if="${diagnosisAuthorityKind || managementAuthorityKind}">
+        <input type="submit" class="btn btn-primary mb-3" name="register" value="診断結果を登録する">
+    </th:block>
+    <div class="center mt-3">
+      <a class="btn btn-primary" th:href="@{/menu}">戻る</a>
+    </div>
+</div>
+</body>
+</html>

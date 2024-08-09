@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン画面</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+<div th:insert="~{common/guideMessage :: guideMessage}"></div>
+
+<div class="container">
+	<div class="center">
+		<nav class="navbar bg-body-tertiary" th:fragment="header">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ">
+						<li class="nav-item">
+							<th:block th:if="${diagnosisAuthorityKind || managementAuthorityKind}">
+								<form th:action="@{/logout}" method="post">
+									<div class="mt-2">										
+										<button id="logoutButton" class="btn btn-danger" type="submit" name="logout" >ログアウト</button>
+									</div>
+			         			</form>
+		         			</th:block>							
+						</li>
+						<li>
+							<th:block th:if="${diagnosisAuthorityKind}">
+								<a th:href="@{/diagnosticHistory}">診断履歴</a>
+							</th:block>							
+						</li>
+						<li>
+							<th:block th:if="${managementAuthorityKind}">
+								<div class="mt-2">
+									<a class="nav-link" th:href="@{/userList}">ユーザー管理画面</a>
+								</div>
+							</th:block>
+													
+						</li>
+						<li>							
+							<th:block th:unless="${diagnosisAuthorityKind || managementAuthorityKind}">
+								<div class="mt-2">
+									<input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm" value="ログイン" >
+								</div>
+							</th:block>
+
+						</li>
+						<li class="nav-item">
+							<div class="mt-2">
+								<a class="nav-link" th:href="@{/signup}">ユーザー登録</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript" th:src="@{/js/init.js}"></script>
+		</nav>
+	</div>
+		<img class="resize" alt="クロノタイプ診断" th:src="@{/img/Snapshot_4.PNG}"><br><br>
+	<div class="center">
+		<a class="btn btn-primary btn-lg center" th:href="@{/diagnosis}">診断する</a>
+	</div><br><br>
+
+	<div class="txt-content">
+		<div class="center">
+			<h3>『クロノタイプとは？』</h3><br>
+		</div>
+		<p>
+		睡眠生理学での 朝型か夜型かというような、
+		体内時計のリズムの種類のことで、
+		最も活動的で頭が冴えている時間帯を決定します。
+		</p><br><br>
+	</div>
+</div>
+
+<!-- ログイン確認モーダルの設定 -->
+<div class="modal fade" id="deleteConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="staticBackdropLabel">ログイン</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form th:action="@{/login}" method="post" th:object="${loginform}">
+					<div class="login">
+						<div class="input-group">
+							<span class="input-group-text" >ログインID</span>
+							<input type="text" class="form-control" th:field="*{loginId}">
+						</div><br>
+						<div class="input-group">
+							<span class="input-group-text" >パスワード</span>
+							<input type="password" class="form-control" th:field="*{password}">
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+				<p><input type="submit" class="btn btn-primary" value="ログイン">
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

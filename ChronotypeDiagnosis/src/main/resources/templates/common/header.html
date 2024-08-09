@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:if="${diagnosisAuthorityKind || managementAuthorityKind}">
+	<nav class="navbar bg-info navbar-dark" th:fragment="header">
+		<div class="container-fluid">
+	    	<a class="navbar-brand" th:href="@{/menu}">アカウント管理</a>
+	    	<form th:action="@{/logout}" method="post">
+				  <input type="submit" class="btn btn-light" value="ログアウト" />
+			</form>
+		</div>
+	</nav>
+</div>
+</body>
+</html>

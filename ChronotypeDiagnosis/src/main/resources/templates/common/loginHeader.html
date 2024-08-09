@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav class="navbar  bg-body-tertiary" th:fragment="loginHeader">
+	<div class="container-fluid">
+	    <a class="navbar-brand" href="#"></a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="#">Home</a>
+	        </li>
+	        <li class="nav-item">
+				<a class="nav-link" onclick="clickBtn1()">ログイン</a>
+				<div id="test">
+					<form th:action="@{/login}" method="post" th:object="${loginForm}">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">ログインID</span>
+							<input type="text" class="form-control" th:field="*{loginId}">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">パスワード</span>
+							<input type="password" class="form-control" th:field="*{password}">
+						</div>
+							<p><input type="submit" class="btn btn-primary" value="ログイン">
+						</div>
+					</form>
+				</div>
+	        </li>
+	        <li class="nav-item">
+			  <a class="nav-link" th:href="@{/signup}">ユーザー登録</a>
+	        </li>
+	      </ul>
+		</div>
+	</div>
+  	<script type="text/javascript" th:src="@{/js/init.js}"></script>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>診断画面</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+<div class="q-container">
+  <div th:insert="~{common/guideMessage :: guideMessage}"></div>
+</div>
+<div class="q-container">
+    <form th:action="@{/diagnosis}" method="post" th:object="${q20form}">
+        <div class="badge bg-primary btn-lg text-wrap" style="width: 6rem;">
+            Q20
+        </div>
+        <h4>1 次の日になにも予定がなくて何時に起きてもかまわないとしたら、あなたは何時に起きますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qOne}" th:value=1>
+            <label class="form-check-label" for="qOne">
+                6：30より前
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qOne}" th:value=2>
+            <label class="form-check-label" for="qTwo">
+                6：30～8：45のあいだ
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qOne}" th:value=3>
+            <label class="form-check-label" for="qThree">
+                8：45より後
+            </label>
+        </div>
+        <h4>2 特定の時間に起きなければならないとしたら、あなたは目覚まし時計を使いますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwo}" th:value=1>
+            <label class="form-check-label" for="qFour">
+                目覚まし時計は使わず、起きたいと思った時間に起きることができる
+            </label>
+            <span class="text-danger" th:if="${#fields.hasErrors('qTwo')}" th:errors="*{qTwo}"></span>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwo}" th:value=2>
+            <label class="form-check-label" for="qFive">
+                目覚まし時計は使うが、スヌーズ機能は必要ない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwo}" th:value=3>
+            <label class="form-check-label" ffor="qSix">
+                目覚まし時計を使うし、スヌーズ機能は必須。できればアラームを2～3個はセットしたい
+            </label>
+        </div>
+        <h4>3.週末は何時に起きますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThree}" th:value=1>
+            <label class="form-check-label" for="qSeven">
+                平日と同じ
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThree}" th:value=2>
+            <label class="form-check-label" for="qEight">
+                平日より45～89分ほど遅い
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThree}" th:value=3>
+            <label class="form-check-label" for="qNine">
+                平日より90分以上遅い
+            </label>
+        </div>
+        <h4>4.あなたにとって時差ボケはどのような感覚ですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFour}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                1いつまでたっても時差ボケが治らない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFour}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                48時間もあれば改善する
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFour}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                たいていすぐに改善する
+            </label>
+        </div>
+
+		<h4>5.一日で一番好きな食事の時間は？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFive}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				朝食朝
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFive}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				昼食
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFive}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				夕食
+            </label>
+        </div>
+        <h4>6.もし学生時代にもどってセンター試験を受けねばならないとしたら、テストの開始時間はいつがいいですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSix}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                朝
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSix}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                昼すぎ
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSix}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                15～16ごろ
+            </label>
+        </div>
+        <h4>7.激しい運動をしなければならないとしたら、何時ごろを選びますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeven}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                8：00前
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeven}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                8：00～16：00のあいだ
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeven}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                16：00よりもあと
+            </label>
+        </div>
+        <h4>8.一日のうちもっとも集中できるのはいつ？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEight}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                起きてから1～2時間後
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEight}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                起きてから2～4時間後
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEight}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                起きてから4～6時間後
+            </label>
+        </div>
+
+        <h4>9.一日の労働時間が5時間だけだとしたら、どの時間帯に働きたいですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNine}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                4：00～9：00
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNine}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                9：00～14：00
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNine}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                16：00～21：00
+            </label>
+        </div>
+
+        <h4>10.自分の思考タイプは、以下のどれに当てはまると思いますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                分析と論理的な思考がうまい
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                論理と直感をあわせ持つバランス型
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                直感と創造的な思考がうまい
+            </label>
+        </div>
+        <h4>11.昼寝をしますか？するとどうなりますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEleven}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                まったくしない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEleven}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                仕事がないときにときどきする
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEleven}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                昼寝をすると夜まで元気でいられる
+            </label>
+        </div>
+        <h4>12.激しい肉体労働を2時間しなければならないとしたら（重い家具の移動など）、もっとも効率的に動ける時間帯はいつだと思いま</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwelve}" th:value=1>
+            <label class="form-check-label" for="qTen">
+                8：00～10：00
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwelve}" th:value=2>
+            <label class="form-check-label" for="qTen">
+                11：00～13：00
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwelve}" th:value=3>
+            <label class="form-check-label" for="qTen">
+                18：00～20：00
+            </label>
+        </div>
+
+        <h4>13.あなたの健康意識は、以下のどれに当てはまると思いますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThirteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+	      いつも健康的な食事や運動を実践している
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThirteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+        ときどき健康的な食事や運動を実践している
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThirteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				健康的な食事や運動を実践するのは難しい
+            </label>
+        </div>
+
+        <h4>14.リスクを取ることに対して、どれぐらい不安になりますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFourteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				不安はあまりない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFourteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				まぁまぁ不安がある
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFourteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				かなりの不安がある
+            </label>
+        </div>
+
+        <h4>15.あなたは以下のどのタイプですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFifteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				未来志向で、明確な目標と大きなプランを持っている
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFifteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				過去に学び、未来に希望を持ち、現在を生きる情熱を大事にしている
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFifteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				つねに現在志向で、いまの幸福を大事にしている
+            </label>
+        </div>
+
+        <h4>16.学生時代、あなたはどんなタイプでしたか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSixteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				人気者
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSixteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				真面目
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSixteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				怠け者
+            </label>
+        </div>
+
+        <h4>17.朝起きたらどのような状態ですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeventeen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				起きてすぐシャキシャキ行動できる
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeventeen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				ボーっとするが寝床から出られないほどではない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeventeen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				完全にフラフラで目を開くのも一苦労
+            </label>
+        </div>
+
+		    <h4>18.起きて30分後の食欲はどのような状態ですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEighteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				かなりの空腹
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEighteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				やや空腹
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEighteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				まったく腹が減らない
+            </label>
+        </div>
+
+		    <h4>19.夜眠れないことがどれぐらいありますか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNineteen}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				ほとんどない。海外旅行で時差ボケしたときぐらい
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNineteen}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				あまりないが、ストレスが強いときには眠れなくなる
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNineteen}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				慢性的に不眠
+            </label>
+        </div>
+
+		    <h4>20.人生の満足度はどれぐらいですか？</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwenty}" th:value=1>
+            <label class="form-check-label" for="qTen">
+				高い
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwenty}" th:value=2>
+            <label class="form-check-label" for="qTen">
+				普通に良い
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwenty}" th:value=3>
+            <label class="form-check-label" for="qTen">
+				低い
+            </label>
+        </div>
+
+        <div class="mt-3">
+            <input type="submit" class="btn btn-primary" name="q20" value="決定">
+        </div>
+    </form>
+</div>
+</body>
+</html>

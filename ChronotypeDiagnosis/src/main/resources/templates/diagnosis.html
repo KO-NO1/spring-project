@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>診断画面</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+
+<div class="q-container">
+    <form th:action="@{/diagnosis}" method="post" th:object="${q10form}">
+        <div class="badge bg-primary text-wrap" style="width: 6rem;">
+            Q10
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qOne}" th:value=true onclick="radioDeselection(this, 1)">
+            <label class="form-check-label" for="qOne">
+                1 ちょっとした音や光でも目が覚めて眠れなくなる
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTwo}" th:value=true onclick="radioDeselection(this, 2)">
+            <label class="form-check-label" for="qTwo">
+                2 食事にあんまり興味がない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qThree}" th:value=true onclick="radioDeselection(this, 3)">
+            <label class="form-check-label" for="qThree">
+                3 だいたい目覚まし時計が鳴る前に起きる
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFour}" th:value=true onclick="radioDeselection(this, 4)">
+            <label class="form-check-label" for="qFour">
+                4 飛行機に乗ると、アイマスクや耳栓をしても眠れない
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qFive}" th:value=true onclick="radioDeselection(this, 5)">
+            <label class="form-check-label" for="qFive">
+                5 ときどき疲労感でイライラしてしまう
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSix}" th:value=true onclick="radioDeselection(this, 6)">
+            <label class="form-check-label" ffor="qSix">
+                6 小さなことでやたらと不安になってしまう
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qSeven}" th:value=true onclick="radioDeselection(this, 7)">
+            <label class="form-check-label" for="qSeven">
+                7 不眠症と診断を受けたか、自己判断で不眠症だと感じる
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qEight}" th:value=true onclick="radioDeselection(this, 8)">
+            <label class="form-check-label" for="qEight">
+                8 学生だったころは、いつも成績のことが不安だった
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qNine}" th:value=true onclick="radioDeselection(this, 9)">
+            <label class="form-check-label" for="qNine">
+                9 過去や未来のことを考え、眠れないことがよくある
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" th:field="*{qTen}" th:value=true onclick="radioDeselection(this, 10)">
+            <label class="form-check-label" for="qTen">
+                10 自分を完璧主義者だと思う
+            </label>
+        </div>
+        <div class="mt-3">
+            <input type="submit" class="btn btn-primary" name="q10" value="決定">
+        </div>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/js/diagnosis.js}"></script>
+</body>
+</html>

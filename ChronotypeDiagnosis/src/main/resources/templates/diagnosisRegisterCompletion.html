@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登録結果</title>
+</head>
+<body>
+<div th:insert="~{common/sourceList :: sourceList}"></div>
+<div class="container-fluid">
+	<div th:insert="~{common/guideMessage :: guideMessage}"></div>
+	<p><a class="btn btn-secondary" th:href="@{/menu}">戻る</a>
+</div>
+</body>
+</html>
